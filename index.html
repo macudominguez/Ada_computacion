@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Ada Computacion</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
+        <link rel="icon" href="../ada_computacion/images/calc.png" type="image/png" sizes="16x16"/>
+    </head>
+    <body>
+        <section class="section">
+            <div class="container">
+                <div class="columns">
+                    <div class="column"><!--1ra caja-->
+                        <div class="card">
+                            <header class="card-header has-background-info is-radiusless">
+                              <p class="card-header-title has-text-white pl-5">Ventas por sucursal</p>
+                            </header>
+                        </div>
+                          <div> 
+                            <table class="table is-fullwidth">
+                              <thead>
+                                <tr>
+                                  <td class="pl-5"><b>Sucursal</b></td>
+                                  <td><b>Total Ventas</b></td>
+                                </tr>
+                              </thead>
+                              <tbody id="info-sales">
+                              </tbody>
+                            </table>
+                          </div>
+                    </div>
+                    <div class="column"><!--2da caja-->
+                        <div class="card">
+                            <header class="card-header has-background-info is-radiusless">
+                              <p class="card-header-title has-text-white px-5">Reportes</p>
+                            </header>
+                        </div>
+                        <div>
+                                <div class="card table2 is-shadowless is-radiusless"> 
+                                  <div class="pt-5 pl-5">Productos estrella: <b id="product-star"></b></div>
+                                  <div class="pl-5 pt-4" >Vendedora que más ingresos generó: <b id="saleswoman-month"></b></div>
+                              </div>
+                        </div>
+                </div>
+            </div>
+                <div class="column">
+                    <div class="card">
+                        <header class="card-header has-background-info is-radiusless">
+                          <p class="card-header-title has-text-white">Ventas</p>
+                          <button class="button has-text-white has-background-success mr-5 my-2" id="open-add-modal-button"><span class="icon"><i class="fas fa-plus-circle"></i></span><span>Nueva Venta</span></button>
+                        </header>
+                    </div>
+                    <div>
+                      <div class="table-container">
+                        <table class="table is-fullwidth">
+                          <thead>
+                          <tr>
+                            <td><b>Fecha</b></td>
+                            <td><b>Vendedora</b></td>
+                            <td><b>Sucursal</b></td>
+                            <td><b>Componentes</b></td>
+                            <td><b>Precio</b></td>
+                            <td><b>Acciones</b></td>
+                          </tr>
+                        </thead>
+                          <tbody id="sales-table"></tbody>
+                        </table>
+                      </div>
+                    </div>
+                </div>
+          </div>
+        </section>
+        <!--MODAL AGREGAR VENTA-->
+        <div class="modal" id="add-modal"> 
+          <div class="modal-background">
+          <div class="modal-card has-background-info mt-6">
+            <header class="modal-card-head has-background-info ">
+              <p class="modal-card-title has-text-white">Agregar Venta</p>
+            </header>
+            <section class="modal-card-body">
+              <div>
+                <h2 class="is-size-5 pt-2">Vendedora</h2>
+                <div class="select is-fullwidth">
+                  <select name="sellers" id="add-modal-sellers">
+                    <option value="Ada">Ada</option>
+                    <option value="Grace">Grace</option>
+                    <option value="Hedy">Hedy</option>
+                    <option value="Sheryl">Sheryl</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <h2 class="is-size-5 pt-2">Componentes</h2>
+                <div class="field">
+                  <div class="control">
+                    <div class="select is-multiple is-fullwidth">
+                      <select multiple size="3" id="add-modal-components"  name="components">
+                        <option value="Monitor GPRS 3000"> Monitor GPRS 3000</option>
+                        <option value="Motherboard ASUS 1500">Monitor GPRS 3000</option>
+                        <option value="Monitor ASC 543">Monitor ASC 543</option>
+                        <option value="Motherboard ASUS 1200">Motherboard ASUS 1200</option>
+                        <option value="Motherboard MZI">Motherboard MZI</option>
+                        <option value="HDD Toyiva">HDD Toyiva</option>
+                        <option value="HDD Wezter Dishital">HDD Wezter Dishital</option>
+                        <option value="RAM Quinston">RAM Quinston</option>
+                        <option value="RAM Quinston Fury">RAM Quinston Fury</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2 class="is-size-5 pt-2">Sucursal</h2>
+                <div class="select is-fullwidth">
+                  <select name="office" id="add-modal-offices">
+                    <option value="Centro">Centro</option>
+                    <option value="Caballito">Caballito</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <h2 class="is-size-5 pt-2">Fecha</h2>
+                <input class="input" type="date" id="add-modal-date" name="date">
+              </div>
+            </section>
+            <footer class="modal-card-foot has-background-grey-light is-justify-content-flex-end">
+              <button class="button mx-4" id="add-modal-cancel-btn">Cancelar</button>
+              <button class="button is-success" id="add-modal-save-btn">Guardar</button>
+            </footer>
+            <button class="modal-close is-large" aria-label="close"></button>
+          </div>
+        </div>
+      </div>
+         <!--MODAL EDITAR VENTA-->
+         <div class="modal" id="editModal"> 
+          <div class="modal-background "></div>
+          <div class="modal-card has-background-info">
+            <header class="modal-card-head has-background-info">
+              <p class="modal-card-title has-text-white">Editar Venta</p>
+            </header>
+            <section class="modal-card-body">
+              <div>
+                <h2 class="is-size-5 pt-2">Vendedora</h2>
+                <div class="select is-fullwidth">
+                  <select name="saleswoman" id="editNames">
+                    <option value="Ada">Ada</option>
+                    <option value="Grace">Grace</option>
+                    <option value="Hedy">Hedy</option>
+                    <option value="Sheryl">Sheryl</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <h2 class="is-size-5 pt-2">Componentes</h2>
+                <div class="field">
+                  <div class="control">
+                    <div class="select is-multiple is-fullwidth">
+                      <select multiple size="3" id="editComponents">
+                        <option value="Monitor GPRS 3000"> Monitor GPRS 3000</option>
+                        <option value="Motherboard ASUS 1500">Monitor GPRS 3000</option>
+                        <option value="Monitor ASC 543">Monitor ASC 543</option>
+                        <option value="Motherboard ASUS 1200">Motherboard ASUS 1200</option>
+                        <option value="Motherboard MZI">Motherboard MZI</option>
+                        <option value="HDD Toyiva">HDD Toyiva</option>
+                        <option value="HDD Wezter Dishital">HDD Wezter Dishital</option>
+                        <option value="RAM Quinston">RAM Quinston</option>
+                        <option value="RAM Quinston Fury">RAM Quinston Fury</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2 class="is-size-5 pt-2">Sucursal</h2>
+                <div class="select is-fullwidth">
+                  <select name="sucursales" id="editOffices">
+                    <option value="Centro">Centro</option>
+                    <option value="Caballito">Caballito</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <h2 class="is-size-5 pt-2">Fecha</h2>
+                <input id="editDate" class="input" type="date">
+              </div>
+            </section>
+            <input type="hidden" id="editId"><!--formulario oculto-->
+            <footer class="modal-card-foot has-background-grey-light is-justify-content-flex-end">
+              <button class="button mx-4" id="add-modal-cancel-btn">Cancelar</button>
+              <button class="button is-success" id="edit-modal-save-btn" >Guardar</button>
+            </footer>
+            <button class="modal-close is-large" aria-label="close"></button>
+          </div>
+        </div> 
+        <!--ELIMINAR VENTA-->
+        <div class="modal" id="deleteModal">
+          <div class="modal-background "></div>
+          <div class="modal-card has-background-info">
+            <header class="modal-card-head has-background-info">
+              <p class="modal-card-title has-text-white">Eliminar Venta</p>
+            </header>
+            <section class="modal-card-body">
+                <h2 class="is-size-5">¿Estás segura?</h2>
+                <p class="pt-4">Esta acción no se puede revertir.</p>
+                <div>
+                  <input type="hidden" class="hidden" id="deleteId">
+                </div>
+            </section>
+            <footer class="modal-card-foot has-background-grey-light is-justify-content-flex-end">
+              <button class="button mx-4" id="bttnremove">Cancelar</button>
+              <button class="button is-danger" id="deleteSale">Eliminar</button>
+            </footer>
+            <button class="modal-close is-large" aria-label="close"></button>
+          </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

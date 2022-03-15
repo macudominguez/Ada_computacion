@@ -1,0 +1,11 @@
+body{
+    background-color: #f1f1f2;
+    min-height:100vh;
+}
+
+.table2{
+    min-height: 122px;
+    border-radius:0;
+    box-shadow: 0;
+
+}
