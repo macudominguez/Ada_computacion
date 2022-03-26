@@ -338,6 +338,7 @@ addModalCancelBtn.onclick = () => {
   addModal.style.display = "none";
 };
 
+
 // Función que brinda la fecha a la tabla de ventas
 const parseDateToString = (date) => {
   //01/01/2022
@@ -432,8 +433,10 @@ $("#add-modal-save-btn").addEventListener("click", (e) => {
     componentes,
   };
   ventas.push(sale);
+  addModal.style.display = "none";
   updateDom();
 });
+
 
 const generateId = () => Math.ceil(Math.random() * 100_000);
 
